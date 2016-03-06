@@ -14,7 +14,67 @@ NOTES: Use realloc to allocate memory.
 #include <stdio.h>
 #include <malloc.h>
 
+#include<stddef.h>
+
 int * sortedArrayInsertNumber(int *Arr, int len, int num)
 {
-	return NULL;
+
+	int p, i, flag, flag1, s, j, *Arr1;
+	p = len;
+	j = len + 1;
+	Arr1 = (int *)realloc(Arr, sizeof(int)*j);
+
+	if ((Arr == NULL) || (len<0))
+	{
+		return NULL;
+	}
+
+	else
+	{
+
+		for (i = len - 1; i >= 0; i--)
+		{
+
+			if (Arr[0] < Arr[len - 1])
+			{
+				if (num < Arr[i])
+				{
+					Arr[p] = Arr[i];
+					p--;
+					if (p == 0){ flag = 1; }
+				}
+				else if (num > Arr[i])
+				{
+					Arr[p] = num; s = p;
+				}
+			}
+
+			else if (Arr[0] > Arr[len - 1])
+			{
+				if (num < Arr[i])
+				{
+					Arr[p] = num; s = p;
+				}
+
+				else if (num > Arr[i])
+				{
+
+					Arr[p] = Arr[i];
+					p--;
+					if (p == 0){ flag1 = 1; }
+				}
+			}
+		}
+		if (flag == 1)
+		{
+			Arr[0] = num; s = 0;
+		}
+		if (flag1 == 1)
+		{
+			Arr[0] = num; s = 0;
+		}
+
+
+		return Arr;
+	}
 }
