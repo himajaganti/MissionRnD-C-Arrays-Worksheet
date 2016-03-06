@@ -10,7 +10,7 @@ ERROR CASES: Return NULL for invalid inputs.
 
 NOTES: Use realloc to allocate memory.
 */
-
+#include<stddef.h>
 #include <stdio.h>
 #include <malloc.h>
 
@@ -19,10 +19,10 @@ NOTES: Use realloc to allocate memory.
 int * sortedArrayInsertNumber(int *Arr, int len, int num)
 {
 
-	int p, i, flag, flag1, s, j, *Arr1;
+	int p, i, flag = 0, flag1 = 0, s, j;
 	p = len;
 	j = len + 1;
-	Arr1 = (int *)realloc(Arr, sizeof(int)*j);
+
 
 	if ((Arr == NULL) || (len<0))
 	{
@@ -35,28 +35,28 @@ int * sortedArrayInsertNumber(int *Arr, int len, int num)
 		for (i = len - 1; i >= 0; i--)
 		{
 
-			if (Arr[0] < Arr[len - 1])
+			if (Arr[0]<Arr[len - 1])
 			{
-				if (num < Arr[i])
+				if (num<Arr[i])
 				{
 					Arr[p] = Arr[i];
 					p--;
 					if (p == 0){ flag = 1; }
 				}
-				else if (num > Arr[i])
+				else if (num>Arr[i])
 				{
 					Arr[p] = num; s = p;
 				}
 			}
 
-			else if (Arr[0] > Arr[len - 1])
+			else if (Arr[0]>Arr[len - 1])
 			{
-				if (num < Arr[i])
+				if (num<Arr[i])
 				{
 					Arr[p] = num; s = p;
 				}
 
-				else if (num > Arr[i])
+				else if (num>Arr[i])
 				{
 
 					Arr[p] = Arr[i];
@@ -73,8 +73,7 @@ int * sortedArrayInsertNumber(int *Arr, int len, int num)
 		{
 			Arr[0] = num; s = 0;
 		}
-
-
-		return Arr;
 	}
+
+	return Arr;
 }
